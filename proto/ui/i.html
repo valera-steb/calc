@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="calc">
+<head>
+    <meta charset="UTF-8">
+    <title>Ui proto</title>
+    <link href="s.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/angular/angular-csp.css" rel="stylesheet" type="text/css">
+
+    <script src="../bower_components/angular/angular.js"></script>
+
+    <script src="app.js"></script>
+    <script src="c.js"></script>
+    <script src="directive/numPadButton.js"></script>
+</head>
+<body>
+<div class="container bordered" ng-controller="calcCtrl">
+    <div class="screen bordered margin5">
+        12-AB-00-F7
+    </div>
+
+    <div class="keyboard bordered margin5">
+        <div class="num-pad-holder">
+            <div class="num-pad bordered margin5">
+                <num-pad-button ng-repeat="button in numPad"
+                data-value="{{::button}}"></num-pad-button>
+            </div>
+        </div>
+
+        <div class="command-pad-holder">
+            <div class="bordered margin5">
+                <select>
+                    <option>2</option>
+                    <option>3</option>
+                    <option selected>16</option>
+                </select>
+                <button>C</button>
+                <button>-</button>
+                <button>+</button>
+                <button>=</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

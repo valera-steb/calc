@@ -1,0 +1,55 @@
+
+.bordered {
+    border: 1px black solid;
+}
+.margin5{
+    margin: 5px;
+}
+
+.container {
+    margin: auto;
+    width: 400px;
+}
+
+.container .screen {
+    text-align: right;
+}
+
+.container .keyboard {
+}
+
+.keyboard .num-pad-holder {
+    display: inline-block;
+    width: 79%;
+}
+.keyboard .num-pad{
+    text-align: center;
+}
+.keyboard num-pad-button {
+    display: inline-block;
+    width: 31%;
+    height: 25px;
+    margin: 2px;
+}
+.keyboard num-pad-button:last-child {
+    width: 70%;
+}
+.keyboard num-pad-button button{
+    height: 100%;
+    width: 100%;
+}
+
+
+.keyboard .command-pad-holder {
+    display: inline-block;
+    width: 19%;
+    vertical-align: top;
+}
+.keyboard .command-pad-holder div {
+    text-align: center;
+}
+.keyboard .command-pad-holder div > * {
+    width: 80%;
+    margin: 2px;
+    height: 25px;
+}
