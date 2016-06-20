@@ -15,6 +15,11 @@ define(function () {
 
                 }
             },
+            keyPad: {
+                setRadix: function(radix){
+                    console.log('co.keyPad.setRadix', radix);
+                }
+            },
             //
             uiModel: {
                 formatValue: function () {
@@ -24,7 +29,14 @@ define(function () {
             calcGraph: {
                 graph: {
                     'error': {'reset': 'wait'},
-                    'wait': []
+                    'wait': {
+                        'onKeyPad': 'wait2',
+                        'reset': 'wait'
+                    },
+                    'wait2': {
+                        'onKeyPad': ['wait2', 'wait', 'error'],
+                        'reset': 'wait'
+                    }
                 },
 
                 onKeyPad: function () {

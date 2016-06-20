@@ -15,7 +15,7 @@ define(['./_init'], function (_init) {
             cs.setState('numPadPressed', '1');
             cs.setState('incomingRadix', 12);
 
-            expect(cs.currentState.incomingRadix).toBe(12);
+            expect(cs.currentState.currentRadix).toBe(12);
             expect(cs.currentState.incomingOperand.value).not.toBeNull();
 
             cs.setState('keyPadPressed', 'reset');

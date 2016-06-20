@@ -13,6 +13,7 @@ define(['./_init', 'core/utils'], function (_init, utils) {
 
         xit('работает в таких случаях: calcState[wait|wait2]');
 
+        xit('возвращает к предыдущему состоянию переключатель в UI, если не работает');
 
         describe('при преобразовании', function(){
             xit('если есть, выполняет предыдущую операцию с текущими операндами, и результат переводит');
@@ -30,7 +31,7 @@ define(['./_init', 'core/utils'], function (_init, utils) {
 
                 cs.setState('incomingRadix', 10);
 
-                expect(cs.currentState.currentRadix).toBe(16);
+                expect(cs.currentState.currentRadix).toBe(10);
                 expect(cs.currentState.incomingOperand.value).toBe('2607');
             });
         })

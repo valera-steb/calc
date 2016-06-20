@@ -15,15 +15,23 @@
         }
     };
 
-    angular.module('calc').directive('numPadButton', function () {
+    angular.module('calc').directive('numPadButton', ['factory', numPadButton]);
+
+    function numPadButton(factory) {
         return {
-            template: '<button>{{::name}}</button>',
+            template: '<button ng-click="click()">{{::name}}</button>',
 
             link: function (scope, iElement, iAttrs, controller) {
                 scope.value = Number(iAttrs.value);
                 scope.name = namesMap.getName(scope.value);
+
+                scope.click = function(){
+                    factory.promise.then(function(cs){
+                        cs.setState('numPadPressed', scope.name);
+                    });
+                }
             }
         }
-    });
+    }
 
 })();

@@ -19,7 +19,7 @@ define([], function () {
                 var
                     cSt = cs.currentState,
                     newNum = {
-                        value: cSt.numPadPressed + (cSt.incomingOperand ? cSt.incomingOperand.value : ''),
+                        value: (cSt.incomingOperand ? cSt.incomingOperand.value : '') + cSt.numPadPressed,
                         radix: cSt.currentRadix,
                         negative: false
                     };

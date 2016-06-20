@@ -13,6 +13,7 @@ define(['core/ControlSystem'], function(ControlSystem){
 
         beforeEach(function () {
             cs.setState('keyPadPressed', 'reset');
+            cs.currentState.currentRadix = 10;
         });
 
     }
