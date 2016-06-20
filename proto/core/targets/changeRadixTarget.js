@@ -27,6 +27,9 @@ define([], function () {
                 cs.setState('incomingRadix', null);
                 co.keyPad.setRadix(cSt.currentRadix);
 
+                if(!cSt.incomingOperand)
+                    return true;
+                
                 var converted = co.core.convert(cSt.incomingOperand, cSt.currentRadix);
                 cs.setState('incomingOperand', converted);
                 co.screen.setValue(converted);

@@ -10,8 +10,26 @@ define(['./_init', 'core/utils'], function (_init, utils) {
             cs = _cs;
         });
 
+        xit('приоритетнее смены основания');
 
         xit('работает в таких случаях: calcState[wait|wait2]');
+
+        describe('сценарии', function () {
+            it('a+b=', function(){
+                
+            });
+            
+            it('a+-b=', function(){
+                
+            });
+            
+            it('a=', function () {
+                
+            });
+        });
         
+        it('фиксация переполнения', function () {
+            
+        });
     });
 });

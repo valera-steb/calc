@@ -9,8 +9,8 @@ require.config({
         var specs = [
             './t/resetTests',
             './t/incomingTests',
-            './t/changeRadixTests',
             './t/incomingCommandTests',
+            './t/changeRadixTests',
             'coreTests'
         ];
 

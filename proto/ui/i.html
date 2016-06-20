@@ -40,12 +40,14 @@
         <div class="command-pad-holder">
             <div class="bordered margin5">
                 <select ng-model="radix">
-                    <option>2</option>
+                    <option value="2">bin</option>
                     <option>3</option>
-                    <option selected>10</option>
-                    <option>16</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option value="10">dex</option>
+                    <option value="16">hex</option>
                 </select>
-                <button>C</button>
+                <button ng-click="onKeyPad('reset')">C</button>
                 <button>-</button>
                 <button>+</button>
                 <button>=</button>

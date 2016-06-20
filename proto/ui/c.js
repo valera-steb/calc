@@ -7,7 +7,7 @@
     function calcCtrl($scope, factory, $timeout) {
         $scope.numPad = [];
         $scope.value = '0';
-        $scope.radix = 10;
+        $scope.radix;
 
 
         var m = {
@@ -36,6 +36,10 @@
                     }
                 }
 
+                $scope.onKeyPad = function (operation) {
+                    cs.setState('keyPadPressed', operation);
+                };
+
                 $scope.$watch('radix', function (newV, oldV) {
                     if (newV == oldV)
                         return;
@@ -44,6 +48,7 @@
                         cs.setState('incomingRadix', newV);
                     });
                 });
+
             }
         };
 

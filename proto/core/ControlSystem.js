@@ -52,8 +52,9 @@ define(['./ControlObject'], function (ControlObject) {
                 targets: [
                     'reset',
                     'incoming',
-                    'changeRadix',
-                    'incomingCommand'
+                    'calcState',
+                    'incomingCommand',
+                    'changeRadix'
                 ],
 
                 currentState: {
@@ -66,9 +67,11 @@ define(['./ControlObject'], function (ControlObject) {
                     formattedValue: null,
                     currentRadix: 10,
                     incomingOperand: null,
+                    operation: null,
 
                     // graph
                     calcState: 'wait',
+                    oldCalcState: null,
 
                     // core
                     operationResult: null,
@@ -76,7 +79,6 @@ define(['./ControlObject'], function (ControlObject) {
 
                     // 
                     accumulator: null,
-                    operation: null
                 },
                 setState: function (name, value) {
                     cs.currentState[name] = value;

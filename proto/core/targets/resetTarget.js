@@ -9,6 +9,7 @@ define(['../utils'], function (utils) {
         
         var st = getDefault();
         utils.copyValues(st, cs.currentState);
+        co.screen.setValue({value:'0'});
         return true;
     };
     
