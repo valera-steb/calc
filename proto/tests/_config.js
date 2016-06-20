@@ -3,11 +3,14 @@
  */
 require.config({
     paths: {
-        'c': '../core'
+        'core': '../core'
     },
     callback: function () {
         var specs = [
-            'test',
+            './t/resetTests',
+            './t/incomingTests',
+            './t/changeRadixTests',
+            './t/incomingCommandTests',
             'coreTests'
         ];
 

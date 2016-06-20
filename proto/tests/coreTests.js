@@ -1,7 +1,7 @@
 /**
  * Created by steb on 20/06/2016.
  */
-define(['c/ControlObject'], function (CO) {
+define(['core/ControlObject'], function (CO) {
     describe('ControlObject.core', function () {
         var core = (new CO).core;
 

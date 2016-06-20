@@ -6,8 +6,8 @@ define(function () {
         var co = {
             // ui view
             screen: {
-                setValue: function () {
-
+                setValue: function (v) {
+                    console.log('co.screen.setValue', v);
                 }
             },
             numPad: {
@@ -23,8 +23,8 @@ define(function () {
             },
             calcGraph: {
                 graph: {
-                    'waitA': [],
-                    'waitB': []
+                    'error': {'reset': 'wait'},
+                    'wait': []
                 },
 
                 onKeyPad: function () {
@@ -76,7 +76,7 @@ define(function () {
                     normB = Number(normB.value) * (normB.negative ? -1 : 1);
 
                     var z = normA + normB;
-                    if (Math.abs(z) < maxValue)
+                    if (!core.isOutOfRange(z))
                         return setUp.value(
                             core.convert({
                                 value: String(z),
@@ -122,9 +122,14 @@ define(function () {
                             value: b.value,
                             negative: !b.negative
                         }, setUp)
+                    },
+
+                    isOutOfRange: function (x) {
+                        return Math.abs(x) > maxValue;
                     }
                 }
             })()
+
         };
 
         return co;

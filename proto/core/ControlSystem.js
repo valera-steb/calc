@@ -1,8 +1,8 @@
 /**
  * Created by steb on 19/06/2016.
  */
-define([], function () {
-   
+define(['./ControlObject'], function (ControlObject) {
+
     return function ControlSystem() {
         var
             m = {
@@ -10,12 +10,26 @@ define([], function () {
                 hasSubScan: false,
 
                 makeScan: function () {
-                    if(m.isSetting)
+                    if (m.isSetting)
                         return m.hasSubScan = true;
-                    
-                    
+
+                    m.isSetting = true;
+                    do {
+                        m.hasSubScan = false;
+
+                        for (var i in cs.targets) {
+                            var target = cs.targets[i];
+                            if (!target(cs, cs.co))
+                                continue;
+
+                            console.log(i, target.name);
+                            break;
+                        }
+                    } while (m.hasSubScan);
+
+                    m.isSetting = false;
                 },
-                
+
                 loadTargets: function (targetsNames, callback) {
                     var targets = [];
 
@@ -25,7 +39,8 @@ define([], function () {
                             return;
                         }
 
-                        require(['./targets' + targetsNames[id]], function (target) {
+                        require(['core/targets/' + targetsNames[id] + 'Target'], function (target) {
+                            target.name = targetsNames[id];
                             targets.push(target);
                             loadTarget(id + 1);
                         });
@@ -35,24 +50,42 @@ define([], function () {
 
             cs = {
                 targets: [
-                    'testTarget'
+                    'reset',
+                    'incoming',
+                    'changeRadix',
+                    'incomingCommand'
                 ],
-                
+
                 currentState: {
                     // ui
                     numPadPressed: null,
                     keyPadPressed: null,
-                    radix: 10,
-                    
+                    incomingRadix: null,
+
                     // ui model
-                    formattedValue: null
+                    formattedValue: null,
+                    currentRadix: 10,
+                    incomingOperand: null,
+
+                    // graph
+                    calcState: 'wait',
+
+                    // core
+                    operationResult: null,
+                    operationError: null,
+
+                    // 
+                    accumulator: null,
+                    operation: null
                 },
                 setState: function (name, value) {
-                    cs.currentState['name'] = value;
+                    cs.currentState[name] = value;
                     m.makeScan();
                 },
-                
-                init: function(callback){
+
+                co: new ControlObject(),
+
+                init: function (callback) {
                     m.loadTargets(cs.targets, function (targets) {
                         cs.targets = targets;
                         callback();

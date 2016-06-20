@@ -15,6 +15,7 @@
   "dependencies": {
     "jasmine-core": "^2.4.1",
     "angular": "^1.5.7",
-    "requirejs": "^2.2.0"
+    "requirejs": "^2.2.0",
+    "lodash": "^4.13.1"
   }
 }
