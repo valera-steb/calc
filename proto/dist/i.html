@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Ui proto</title>
+    <link href="main.css" rel="stylesheet" type="text/css">
+
+    <script src="libs.js"></script>
+    <script src="core.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="calc">
+<div class="container bordered" ng-controller="calcCtrl">
+    <div class="screen bordered margin5">
+        {{value}}
+    </div>
+
+    <div class="keyboard bordered margin5">
+        <div class="num-pad-holder">
+            <div class="num-pad bordered margin5">
+                <num-pad-button ng-repeat="button in numPad"
+                data-value="{{::button}}"></num-pad-button>
+            </div>
+        </div>
+
+        <div class="command-pad-holder">
+            <div class="bordered margin5">
+                <select ng-model="radix">
+                    <option value="2">bin</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option value="10">dex</option>
+                    <option value="16">hex</option>
+                </select>
+                <button ng-click="onKeyPad('reset')">C</button>
+                <button>-</button>
+                <button>+</button>
+                <button>=</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
