@@ -27,6 +27,7 @@ define([], function () {
                 var dec = co.core.convert(newNum, 10);
                 if(!co.core.isOutOfRange(Number(dec.value))){
                     cs.setState('incomingOperand', newNum);
+                    cs.setState('oldCalcState', null);
                     co.screen.setValue(newNum);
                 }
                 
@@ -47,7 +48,7 @@ define([], function () {
         if (['error', null].indexOf(currentState.calcState) > -1)
             return 'lockedInput';
 
-        if (['wait'].indexOf(currentState.calcState) > -1)
+        if (['wait', 'wait2'].indexOf(currentState.calcState) > -1)
             return 'increment';
 
         return 'none';

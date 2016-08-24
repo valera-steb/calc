@@ -28,6 +28,7 @@ define(['./ControlObject'], function (ControlObject) {
                     } while (m.hasSubScan);
 
                     m.isSetting = false;
+                    console.log(cs.currentState);
                 },
 
                 loadTargets: function (targetsNames, callback) {
@@ -52,7 +53,9 @@ define(['./ControlObject'], function (ControlObject) {
                 targets: [
                     'reset',
                     'incoming',
+                    'storeOperation',
                     'calcState',
+                    'accumulateValue',
                     'incomingCommand',
                     'changeRadix'
                 ],

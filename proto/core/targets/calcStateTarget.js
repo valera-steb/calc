@@ -10,10 +10,27 @@ define([], function () {
             cSt = cs.currentState;
 
         switch (key) {
+            case 'operationEntered':
+                co.calcGraph.onOperation(cs);
+                return true;
         }
     };
 
     function getStateKey(currentState, cs) {
+        if(currentState.keyPadPressed){
+            switch (currentState.keyPadPressed){
+                case '-':
+                case '+':
+                    return 'operationEntered';
+                case 'equal':
+                    return 'hasEqual';
+                case 'reset':
+                    return 'reset';
+                default:
+                    return 'error';
+            }
+        }
+        
         var
             hasAccumulator = currentState.accumulator != null,
             hasOperation = currentState.operation == null,

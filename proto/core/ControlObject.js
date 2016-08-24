@@ -30,17 +30,23 @@ define(function () {
                 graph: {
                     'error': {'reset': 'wait'},
                     'wait': {
-                        'onKeyPad': 'wait2',
+                        'onOperation': 'wait2',
                         'reset': 'wait'
                     },
                     'wait2': {
+                        'onOperation': 'wait2',
                         'onKeyPad': ['wait2', 'wait', 'error'],
                         'reset': 'wait'
                     }
                 },
 
-                onKeyPad: function () {
+                onOperation: function (cs) {
+                    var
+                        calcState = cs.currentState.calcState,
+                        v = this.graph[calcState];
 
+                    cs.setState('oldCalcState', calcState);
+                    cs.setState('calcState', v['onOperation'] || 'error');
                 },
                 onNumPad: function () {
 
