@@ -16,7 +16,8 @@ function accumulateValueTarget(cs:ControlSystem, co:ControlObject.CO) {
             
             return co.cs.setStates({
                 'accumulator': cs.state.incomingOperand,
-                'incomingOperand': null
+                'incomingOperand': null,
+                'calcStateTransit': null
             });
     }
 }

@@ -21,13 +21,13 @@ function changeRadixTarget(cs:ControlSystem, co:ControlObject.CO) {
 
         case 'lockedInput':
             co.cs.setState('incomingRadix', null);
-            co.keyPad.setRadix(cSt.currentRadix);
+            co.keyPad.setRadix(cSt.currentRadix.toString());
             return true;
 
         case 'convert':
             co.cs.setState('currentRadix', Number(cSt.incomingRadix));
             co.cs.setState('incomingRadix', null);
-            co.keyPad.setRadix(cSt.currentRadix);
+            co.keyPad.setRadix(cSt.currentRadix.toString());
 
             if(!cSt.incomingOperand)
                 return true;

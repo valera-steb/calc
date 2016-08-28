@@ -1,7 +1,7 @@
 /**
  * Created by steb on 24/08/2016.
  */
-import {ControlSystem as CS} from "./ControlSystem";
+import {ControlSystem as CS, ICalcValue} from "./ControlSystem";
 import * as utils from './utils';
 
 export namespace ControlObject {
@@ -33,8 +33,11 @@ export namespace ControlObject {
 
         //
         uiModel = {
-            formatValue: function () {
-
+            formatValue: function (value:ICalcValue):string {
+                var st = '';
+                if (value.negative)
+                    st += '-';
+                return st += value.value;
             }
         };
 
@@ -82,7 +85,7 @@ export namespace ControlObject {
                 if (!core.isOutOfRange(z))
                     return setUp.value(
                         core.convert({
-                            value: String(z),
+                            value: String(Math.abs(z)),
                             radix: 10,
                             negative: z < 0
                         }, a.radix)
@@ -200,17 +203,18 @@ export namespace ControlObject {
             var actions = ['onOperation', 'onNumPad', 'onEqual', 'reset'];
 
             for (var i in actions) {
-                var action = actions[i];
+                let action = actions[i];
                 this[action] = function (cs:CS) {
                     var
                         calcState = cs.state.calcState,
                         v = this.graph[calcState],
                         newState = v[action] || 'error';
 
-                    cs.co.cs.setStates({
-                        'calcStateTransit': calcState + '-' + newState,
-                        'calcState': newState
-                    });
+                    if (newState != '')
+                        cs.co.cs.setStates({
+                            'calcStateTransit': calcState + '-' + newState,
+                            'calcState': newState
+                        });
                 }
             }
         }
@@ -219,10 +223,14 @@ export namespace ControlObject {
             'error': {'reset': 'wait'},
             'wait': {
                 'onOperation': 'wait2',
+                'onNumPad': '',
+                'onEqual': '',
                 'reset': 'wait'
             },
             'wait2': {
                 'onOperation': 'wait2',
+                'onNumPad': '',
+                'onEqual': 'wait',
                 'reset': 'wait'
             }
         };
@@ -230,13 +238,13 @@ export namespace ControlObject {
         onOperation(cs:CS) {
         }
 
-        onNumPad() {
+        onNumPad(cs:CS) {
         }
 
         onEqual(cs:CS) {
         }
 
-        reset() {
+        reset(cs:CS) {
         }
     }
 }

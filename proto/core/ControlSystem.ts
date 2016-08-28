@@ -32,22 +32,20 @@ export class CurrentState {
     incomingRadix:string = null;
 
     // ui model
-    formattedValue = null;
     currentRadix:Number = 10;
-    incomingOperand = null;
+    incomingOperand:ICalcValue = null;
     operation = null;
 
     // graph
     calcState:string = 'wait';
     calcStateTransit:string = null;
-    oldCalcState:string = null;
 
     // core
-    operationResult = null;
+    operationResult:ICalcValue = null;
     operationError = null;
 
     //
-    accumulator = null;
+    accumulator:ICalcValue = null;
 }
 
 export class ControlSystem {
@@ -57,10 +55,9 @@ export class ControlSystem {
     targets:any = [
         'reset',
         'incomingArgument',
-        //'storeOperation',
         'calcState',
+        'calculate',
         'accumulateValue',
-        //'incomingCommand',
         'changeRadix'
     ];
 
@@ -76,4 +73,11 @@ export class ControlSystem {
             callback();
         });
     }
+}
+
+
+export interface ICalcValue {
+    value:string,
+    radix:Number,
+    negative:boolean
 }

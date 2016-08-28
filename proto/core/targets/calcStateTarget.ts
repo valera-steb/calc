@@ -18,47 +18,61 @@ function calcStateTarget(cs:ControlSystem, co:ControlObject.CO) {
                 'keyPadPressed': null,
                 'operation': cs.state.keyPadPressed
             });
+
         case 'hasEqual':
             co.calcGraph.onEqual(cs);
             return co.cs.setState('keyPadPressed', null);
+
+        case 'numPadPressed':
+            co.calcGraph.onNumPad(cs);
+            return true;
+
+        // case 'reset':
+        //     co.calcGraph.reset(cs);
+        //     return true;
     }
 }
 
 function getStateKey(currentState:CurrentState) {
-    if(currentState.keyPadPressed){
-        switch (currentState.keyPadPressed){
-            case '-':
-            case '+':
-                return 'operationEntered';
-            case 'equal':
-                return 'hasEqual';
-            case 'reset':
-                return 'reset';
-            default:
-                return 'error';
-        }
+    if (!currentState.keyPadPressed || currentState.calcStateTransit)
+        return '';
+
+    if(currentState.numPadPressed)
+        return 'numPadPressed';
+
+    switch (currentState.keyPadPressed) {
+        case '-':
+        case '+':
+            return 'operationEntered';
+        case 'equal':
+            return 'hasEqual';
+        case 'reset':
+            return 'reset';
+        default:
+            return 'error';
     }
 
-    var
-        hasAccumulator = currentState.accumulator != null,
-        hasOperation = currentState.operation == null,
-        hasNextOperation = ['add', 'dec'].indexOf(currentState.keyPadPressed) > -1,
-        hasEqualOperation = currentState.keyPadPressed == 'equal',
-        hasIncomingOperand = currentState.incomingOperand != null;
 
-    if (currentState.calcState == 'error')
-        return 'error';
+    /*var
+     hasAccumulator = currentState.accumulator != null,
+     hasOperation = currentState.operation == null,
+     hasNextOperation = ['add', 'dec'].indexOf(currentState.keyPadPressed) > -1,
+     hasEqualOperation = currentState.keyPadPressed == 'equal',
+     hasIncomingOperand = currentState.incomingOperand != null;
 
-    if (
-        !hasAccumulator && !hasOperation &&
-        hasNextOperation &&
-        hasIncomingOperand
-    ) return 'toWait2';
+     if (currentState.calcState == 'error')
+     return 'error';
 
-    if (
-        !hasIncomingOperand &&
-        hasOperation &&
-        hasAccumulator
-    )
-        return '';
+     if (
+     !hasAccumulator && !hasOperation &&
+     hasNextOperation &&
+     hasIncomingOperand
+     ) return 'toWait2';
+
+     if (
+     !hasIncomingOperand &&
+     hasOperation &&
+     hasAccumulator
+     )
+     return '';*/
 }

@@ -27,7 +27,7 @@
                 with (cs.co) {
                     screen.setValue = function (v) {
                         $timeout(function () {
-                            $scope.value = v.value;
+                            $scope.value = uiModel.formatValue(v);
                         });
                     };
 
