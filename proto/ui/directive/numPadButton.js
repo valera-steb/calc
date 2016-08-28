@@ -27,7 +27,7 @@
 
                 scope.click = function(){
                     factory.promise.then(function(cs){
-                        cs.setState('numPadPressed', scope.name);
+                        cs.co.cs.setState('numPadPressed', scope.name);
                     });
                 }
             }

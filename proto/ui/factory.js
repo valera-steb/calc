@@ -10,8 +10,8 @@
             factory;
 
 
-        require(['core/ControlSystem', 'core/utils'], function (ControlSystem, utils) {
-            var cs = new ControlSystem();
+        require(['core/ControlSystem', 'core/utils'], function (core, utils) {
+            var cs = new core.ControlSystem();
             cs.init(function () {
                 factory.utils = utils;
                 def.resolve(cs);
