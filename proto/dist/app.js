@@ -14,7 +14,7 @@ var calcApp = angular.module('calc', []);
     function calcCtrl($scope, factory, $timeout) {
         $scope.numPad = [];
         $scope.value = '0';
-        $scope.radix;
+        $scope.radix = '10';
 
 
         var m = {
@@ -34,28 +34,27 @@ var calcApp = angular.module('calc', []);
                 with (cs.co) {
                     screen.setValue = function (v) {
                         $timeout(function () {
-                            $scope.value = v.value;
+                            $scope.value = uiModel.formatValue(v);
                         });
                     };
 
                     keyPad.setRadix = function (v) {
                         $scope.radix = v;
-                    }
-                }
+                    };
 
-                $scope.onKeyPad = function (operation) {
-                    cs.setState('keyPadPressed', operation);
-                };
+                    $scope.onKeyPad = function (operation) {
+                        cs.setState('keyPadPressed', operation);
+                    };
 
-                $scope.$watch('radix', function (newV, oldV) {
-                    if (newV == oldV)
-                        return;
+                    $scope.$watch('radix', function (newV, oldV) {
+                        if (newV == oldV)
+                            return;
 
-                    $timeout(function () {
-                        cs.setState('incomingRadix', newV);
+                        $timeout(function () {
+                            cs.setState('incomingRadix', newV);
+                        });
                     });
-                });
-
+                }
             }
         };
 
@@ -93,7 +92,7 @@ var calcApp = angular.module('calc', []);
 
                 scope.click = function(){
                     factory.promise.then(function(cs){
-                        cs.setState('numPadPressed', scope.name);
+                        cs.co.cs.setState('numPadPressed', scope.name);
                     });
                 }
             }
@@ -114,8 +113,8 @@ var calcApp = angular.module('calc', []);
             factory;
 
 
-        require(['core/ControlSystem', 'core/utils'], function (ControlSystem, utils) {
-            var cs = new ControlSystem();
+        require(['core/ControlSystem', 'core/utils'], function (core, utils) {
+            var cs = new core.ControlSystem();
             cs.init(function () {
                 factory.utils = utils;
                 def.resolve(cs);

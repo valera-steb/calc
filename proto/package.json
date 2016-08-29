@@ -9,7 +9,8 @@
   "dependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",
-    "requirejs": "^2.2.0"
+    "grunt-contrib-requirejs": "^1.0.0",
+    "grunt-ts": "^5.5.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -19,7 +19,7 @@
         <div class="num-pad-holder">
             <div class="num-pad bordered margin5">
                 <num-pad-button ng-repeat="button in numPad"
-                data-value="{{::button}}"></num-pad-button>
+                                data-value="{{::button}}"></num-pad-button>
             </div>
         </div>
 
@@ -34,9 +34,9 @@
                     <option value="16">hex</option>
                 </select>
                 <button ng-click="onKeyPad('reset')">C</button>
-                <button>-</button>
-                <button>+</button>
-                <button>=</button>
+                <button ng-click="onKeyPad('-')">-</button>
+                <button ng-click="onKeyPad('+')">+</button>
+                <button ng-click="onKeyPad('equal')">=</button>
             </div>
         </div>
     </div>
