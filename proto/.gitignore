@@ -3,3 +3,9 @@ bower_components
 node_modules
 /core/**/*.js
 /core/**/*.js.map
+
+/infrastructure/**/*.js
+/infrastructure/**/*.js.map
+
+/tests/i/**/*.js
+/tests/i/**/*.js.map

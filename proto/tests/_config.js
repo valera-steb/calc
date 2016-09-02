@@ -7,11 +7,12 @@ require.config({
     },
     callback: function () {
         var specs = [
-            './t/resetTests',
-            './t/incomingTests',
-            './t/incomingCommandTests',
-            './t/changeRadixTests',
-            'coreTests'
+            // './t/resetTests',
+            // './t/incomingTests',
+            // './t/incomingCommandTests',
+            // './t/changeRadixTests',
+            // 'coreTests'
+            './i/csTests'
         ];
 
         var executeSpecs = (function () {

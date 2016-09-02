@@ -54,6 +54,14 @@ module.exports = function(grunt) {
                     fast: 'never',
                     sourceMap: true
                 }
+            },
+            tests: {
+                src: ['tests/**/*.ts'],
+                options: {
+                    module: 'amd',
+                    fast: 'never',
+                    sourceMap: true
+                }
             }
         },
 
