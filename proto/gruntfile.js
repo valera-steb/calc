@@ -48,7 +48,10 @@ module.exports = function(grunt) {
 
         ts: {
             default: {
-                src: ['core/**/*.ts'],
+                src: [
+                    'core/**/*.ts',
+                    'infrastructure/**/*.ts'
+                ],
                 options: {
                     module: 'amd',
                     fast: 'never',

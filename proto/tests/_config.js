@@ -12,7 +12,8 @@ require.config({
             // './t/incomingCommandTests',
             // './t/changeRadixTests',
             // 'coreTests'
-            './i/csTests'
+            './i/time',
+            './i/cs'
         ];
 
         var executeSpecs = (function () {
@@ -151,15 +152,15 @@ require.config({
         })();
 
 
-            (function getSpec(id) {
-                if (id == specs.length) {
-                    executeSpecs();
-                    return;
-                }
-    
-                require(['./' + specs[id]], function () {
-                    getSpec(id + 1);
-                });
-            })(0);
+        (function getSpec(id) {
+            if (id == specs.length) {
+                executeSpecs();
+                return;
+            }
+
+            require(['./' + specs[id] + 'Tests'], function () {
+                getSpec(id + 1);
+            });
+        })(0);
     }
 });

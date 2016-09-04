@@ -3,7 +3,7 @@
  */
 /// <reference path="../jasmine.d.ts" />
 
-import {csStructure as cst} from '../../infrastructure/ControlSystem';
+import * as cst from '../../infrastructure/ControlSystem';
 
 class State {
 }
@@ -15,7 +15,7 @@ class CS extends cst.ControlSystem<State, CS, CO> {
 class CO extends cst.ControlObject<State, CS, CO> {
 }
 
-describe('csStructure.cs', function () {
+describe('csStructure:cs', function () {
     it('must exist', function () {
         var cs = new CS;
 
