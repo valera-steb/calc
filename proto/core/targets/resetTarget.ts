@@ -12,7 +12,7 @@ function resetTarget(cs:ControlSystem, co:ControlObject) {
 
     var st = getDefault();
     utils.copyValues(st, cs.state);
-    co.screen.setValue({value:'0'});
+    co.screen.setValue('0');
     return true;
 }
 
@@ -20,6 +20,8 @@ function resetTarget(cs:ControlSystem, co:ControlObject) {
 function getDefault() {
     return {
         // ui
+        displayValue: '0',
+
         numPadPressed: null,
         keyPadPressed: null,
         incomingRadix: null,

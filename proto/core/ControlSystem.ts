@@ -7,6 +7,8 @@ import * as utils from './utils';
 
 export class CurrentState {
     // ui
+    displayValue: string = '0';
+    
     numPadPressed:string = null;
     keyPadPressed:string = null;
     incomingRadix:string = null;
@@ -37,6 +39,7 @@ export class ControlSystem extends csStructure.ControlSystem<
 
     targets:any = [
         'reset',
+        'displayValue',
         'incomingArgument',
         'calcState',
         'calculate',
@@ -50,6 +53,7 @@ export class ControlSystem extends csStructure.ControlSystem<
     init(callback) {
         this.co.loadTargets(this.targets, (targets) => {
             this.targets = targets;
+            this.co.cs.setStates(this.state);
             callback();
         });
 

@@ -12,7 +12,7 @@ function accumulateValueTarget(cs:ControlSystem, co:ControlObject) {
 
     switch (key) {
         case 'accumulateIncomingOperand':
-            co.screen.setValue({value: 0});
+            //co.screen.setValue({value: 0});
             
             return co.cs.setStates({
                 'accumulator': cs.state.incomingOperand,

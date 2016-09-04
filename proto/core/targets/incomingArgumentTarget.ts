@@ -32,7 +32,7 @@ function incomingArgumentTarget(cs:ControlSystem, co:ControlObject) {
                     'incomingOperand': newNum,
                     'calcStateTransit': null
                 });
-                co.screen.setValue(newNum);
+                //co.screen.setValue(newNum);
             }
 
             return co.cs.setState('numPadPressed', null);

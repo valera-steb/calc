@@ -9,3 +9,6 @@ node_modules
 
 /tests/i/**/*.js
 /tests/i/**/*.js.map
+
+/tests/s/**/*.js
+/tests/s/**/*.js.map

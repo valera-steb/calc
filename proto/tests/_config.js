@@ -3,7 +3,8 @@
  */
 require.config({
     paths: {
-        'core': '../core'
+        'core': '../core',
+        'infrastructure': '../infrastructure'
     },
     callback: function () {
         var specs = [
@@ -12,6 +13,7 @@ require.config({
             // './t/incomingCommandTests',
             // './t/changeRadixTests',
             // 'coreTests'
+            './s/simply',
             './i/time',
             './i/cs'
         ];

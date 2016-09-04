@@ -34,7 +34,7 @@ function changeRadixTarget(cs:ControlSystem, co:ControlObject) {
 
             var converted = co.core.convert(cSt.incomingOperand, cSt.currentRadix);
             co.cs.setState('incomingOperand', converted);
-            co.screen.setValue(converted);
+            //co.screen.setValue(converted);
 
             return true;
 

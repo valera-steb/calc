@@ -122,7 +122,8 @@ export class ControlObject extends csStructure.ControlObject<
             dec: function (a, b, setUp) {
                 execute(a, {
                     value: b.value,
-                    negative: !b.negative
+                    negative: !b.negative,
+                    radix: b.radix
                 }, setUp)
             },
 

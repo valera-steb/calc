@@ -25,7 +25,7 @@ function calculateTarget(cs:ControlSystem, co:ControlObject) {
                             'accumulator': null,
                             'operationResult': z
                         });
-                        co.screen.setValue(z);
+                        //co.screen.setValue(z);
                     },
                     error: setError
                 }
@@ -38,7 +38,7 @@ function calculateTarget(cs:ControlSystem, co:ControlObject) {
                 cs.state.incomingOperand,
                 {
                     value: z=> {
-                        co.screen.setValue({value: 0});
+                        //co.screen.setValue({value: 0});
                         co.cs.setStates({
                             'calcStateTransit': null,
                             'incomingOperand': null,
