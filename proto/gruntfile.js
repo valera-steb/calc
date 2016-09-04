@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         },
 
         ts: {
-            default: {
+            core: {
                 src: [
                     'core/**/*.ts',
                     'infrastructure/**/*.ts'
@@ -87,5 +87,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-ts');
 
     grunt.registerTask('default', ['ts']);
-    grunt.registerTask('relese', ['ts', 'concat']);
+    grunt.registerTask('relese', ['ts:core', 'requirejs:compile', 'concat']);
 };

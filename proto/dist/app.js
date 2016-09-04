@@ -34,7 +34,7 @@ var calcApp = angular.module('calc', []);
                 with (cs.co) {
                     screen.setValue = function (v) {
                         $timeout(function () {
-                            $scope.value = uiModel.formatValue(v);
+                            $scope.value = v;
                         });
                     };
 

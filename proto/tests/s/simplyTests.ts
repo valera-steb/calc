@@ -52,4 +52,35 @@ describe('ControlSystem:simply scenarios', function () {
         csCo.setState('keyPadPressed', 'equal');
         expect(cs.state.displayValue).toBe('-289');
     });
+
+    it('5 radix(2) 101', function () {
+        csCo.setState('numPadPressed', 5);
+        csCo.setState('incomingRadix', 2);
+
+        expect(cs.state.incomingOperand.radix).toBe(2);
+        expect(cs.state.incomingOperand.value).toBe('101');
+
+        expect(cs.state.displayValue).toBe('101');
+    });
+
+    it('= => 0', function () {
+        csCo.setState('keyPadPressed', 'equal');
+
+        expect(cs.state.displayValue).toBe('0');
+        expect(cs.state.calcState).toBe('wait');
+    });
+
+    it('ffff ffff + 1 = error', function () {
+        csCo.setState('incomingRadix', 16);
+        for(var i=0;i<8;i++)
+            csCo.setState('numPadPressed', 'F');
+
+        expect(cs.state.displayValue).toBe('FFFF FFFF');
+
+        csCo.setState('keyPadPressed', '+');
+        csCo.setState('numPadPressed', 1);
+        csCo.setState('keyPadPressed', 'equal');
+
+        expect(cs.state.displayValue).toBe('error');
+    })
 });

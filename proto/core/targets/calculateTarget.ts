@@ -9,7 +9,8 @@ function calculateTarget(cs:ControlSystem, co:ControlObject) {
     var key = getKey(cs.state);
 
     function setError() {
-        console.log('error');
+        co.cs.setState('operationError', 'overflow');
+        co.calcGraph.onError(cs);
     }
 
     switch (key) {

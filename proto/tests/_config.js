@@ -13,6 +13,7 @@ require.config({
             // './t/incomingCommandTests',
             // './t/changeRadixTests',
             // 'coreTests'
+            './s/complex',
             './s/simply',
             './i/time',
             './i/cs'

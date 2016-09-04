@@ -29,11 +29,17 @@ export class ControlObject extends csStructure.ControlObject<
 
     //
     uiModel = {
-        formatValue: function (value:ICalcValue):string {
+        formatValue: function (o:ICalcValue):string {
             var st = '';
-            if (value.negative)
-                st += '-';
-            return st += value.value;
+            if (o.radix == 16 && o.value.length > 3)
+                st = o.value.slice(0, st.length - 4) + ' ' + o.value.slice(st.length - 4);
+            else
+                st = o.value;
+
+            if (o.negative)
+                st = '-' + st;
+
+            return st;
         }
     };
 
@@ -134,7 +140,7 @@ export class ControlObject extends csStructure.ControlObject<
     })();
 
     timer = new csStructure.TimeStamper();
-    
+
     loadTargets(targetsNames, callback) {
         var targets = [];
 
@@ -156,7 +162,7 @@ export class ControlObject extends csStructure.ControlObject<
 
 export class CalcGraph {
     constructor() {
-        var actions = ['onOperation', 'onNumPad', 'onEqual', 'reset'];
+        var actions = ['onOperation', 'onNumPad', 'onEqual', 'reset', 'onError'];
 
         for (var i in actions) {
             let action = actions[i];
@@ -164,7 +170,9 @@ export class CalcGraph {
                 var
                     calcState = cs.state.calcState,
                     v = this.graph[calcState],
-                    newState = v[action] || 'error';
+                    newState = v[action];
+
+                newState = newState || newState == '' ? newState : "error";
 
                 if (newState != '')
                     cs.co.cs.setStates({
@@ -201,5 +209,8 @@ export class CalcGraph {
     }
 
     reset(cs:CS) {
+    }
+    
+    onError(cs: CS){
     }
 }
