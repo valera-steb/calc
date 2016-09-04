@@ -5,7 +5,7 @@ import {ControlObject} from "../ControlObject";
 import {CurrentState, ControlSystem} from "../ControlSystem";
 
 export = accumulateValueTarget;
-function accumulateValueTarget(cs:ControlSystem, co:ControlObject.CO) {
+function accumulateValueTarget(cs:ControlSystem, co:ControlObject) {
 
     var
         key = getStateKey(cs.state);

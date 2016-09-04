@@ -5,7 +5,7 @@ import {ControlObject} from "../ControlObject";
 import {CurrentState, ControlSystem} from "../ControlSystem";
 
 export = calculateTarget;
-function calculateTarget(cs:ControlSystem, co:ControlObject.CO) {
+function calculateTarget(cs:ControlSystem, co:ControlObject) {
     var key = getKey(cs.state);
 
     function setError() {

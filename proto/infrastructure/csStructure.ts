@@ -4,5 +4,3 @@
 
 export * from './ControlSystem';
 export * from './TimeStamper';
-
-//export namespace 

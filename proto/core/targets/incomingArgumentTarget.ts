@@ -6,7 +6,7 @@ import {ControlSystem, CurrentState} from "../ControlSystem";
 
 
 export  = incomingArgumentTarget;
-function incomingArgumentTarget(cs:ControlSystem, co:ControlObject.CO) {
+function incomingArgumentTarget(cs:ControlSystem, co:ControlObject) {
 
     var key = getStateKey(cs.state);
 

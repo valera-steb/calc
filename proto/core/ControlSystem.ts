@@ -1,29 +1,9 @@
 /**
  * Created by steb on 24/08/2016.
  */
-import {ControlObject} from './ControlObject';
-
-class M {
-    constructor(private cs:ControlSystem) {
-    }
-
-    loadTargets(targetsNames, callback) {
-        var targets = [];
-
-        (function loadTarget(id) {
-            if (id == targetsNames.length) {
-                callback(targets);
-                return;
-            }
-
-            (window as any).require(['core/targets/' + targetsNames[id] + 'Target'], function (target:any) {
-                target.targetName = targetsNames[id];
-                targets.push(target);
-                loadTarget(id + 1);
-            });
-        })(0);
-    }
-}
+import * as co from './ControlObject';
+import * as csStructure from 'infrastructure/csStructure';
+import * as utils from './utils';
 
 export class CurrentState {
     // ui
@@ -48,9 +28,12 @@ export class CurrentState {
     accumulator:ICalcValue = null;
 }
 
-export class ControlSystem {
+export class ControlSystem extends csStructure.ControlSystem<
+    CurrentState, ControlSystem, co.ControlObject>{
 
-    private m = new M(this);
+    constructor(){
+        super(CurrentState, co.ControlObject);
+    }
 
     targets:any = [
         'reset',
@@ -61,17 +44,24 @@ export class ControlSystem {
         'changeRadix'
     ];
 
-    //currentState = new CurrentState();
     state = new CurrentState();
 
 
-    co = new ControlObject.CO(this);
-
     init(callback) {
-        this.m.loadTargets(this.targets, (targets) => {
+        this.co.loadTargets(this.targets, (targets) => {
             this.targets = targets;
             callback();
         });
+
+        var
+            timerCallbacks = this.co.timer.callbacks,
+            onActiveTarget = timerCallbacks.onActiveTarget;
+
+        timerCallbacks.onActiveTarget = (target)=>{
+            console.log(target.name, utils.clear(this.state));
+            onActiveTarget(target);
+        };
+        this.co.cs.init(timerCallbacks);
     }
 }
 

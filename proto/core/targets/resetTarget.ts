@@ -6,7 +6,7 @@ import {ControlObject} from "../ControlObject";
 import {ControlSystem} from "../ControlSystem";
 
 export = resetTarget;
-function resetTarget(cs:ControlSystem, co:ControlObject.CO) {
+function resetTarget(cs:ControlSystem, co:ControlObject) {
     if (cs.state.keyPadPressed != 'reset')
         return false;
 

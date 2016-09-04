@@ -6,7 +6,7 @@ import {ControlObject} from "../ControlObject";
 import {ControlSystem, CurrentState} from "../ControlSystem";
 
 export = calcStateTarget;
-function calcStateTarget(cs:ControlSystem, co:ControlObject.CO) {
+function calcStateTarget(cs:ControlSystem, co:ControlObject) {
 
     var
         key = getStateKey(cs.state);
